@@ -26,12 +26,12 @@ export default async function VerdictPage({ params }: { params: Promise<{ servic
           <SummaryPill>{row.duration}</SummaryPill>
           <SummaryPill>{row.visitCount ?? 0} visits</SummaryPill>
         </div>
-        <ClockNote>Fee stays last. This prototype will not ask for money before the verdict and document checklist.</ClockNote>
+        <ClockNote>Fee stays last. You will see the documents and every step before the payment simulator.</ClockNote>
       </section>
 
       <section>
         <div className="section-title">
-          <h2>Documents to prepare</h2>
+          <h2>Prepare these before you start</h2>
         </div>
         <ul className="detail-list">
           {row.documents.map((document) => (
@@ -39,6 +39,11 @@ export default async function VerdictPage({ params }: { params: Promise<{ servic
           ))}
         </ul>
       </section>
+
+      {service.built ? <section className="start-service-panel">
+        <div><p className="eyebrow">Ready when you are</p><h2>Start {service.title.toLowerCase()}</h2><p>You will answer only the questions needed for this service. Documents are checked before payment.</p></div>
+        <Link className="button" href={`/do/${service.id}?state=${state}`}>{service.id === "challan" ? "Find or dispute a fine" : "Start application"}</Link>
+      </section> : null}
 
       <section className="section-panel">
         <h2>Why this answer</h2>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import "./globals.css";
 import { AppShell, PrototypeStrip } from "@/components/ui";
+import { PrototypeDialog } from "@/components/prototype-dialog";
 import { isStateCode, type StateCode } from "@/lib/capability";
 
 export const metadata: Metadata = {
@@ -18,6 +19,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
   return (
     <html lang="en">
       <body>
+        <PrototypeDialog />
         <PrototypeStrip />
         <AppShell selectedState={selectedState} language={language}>{children}</AppShell>
       </body>

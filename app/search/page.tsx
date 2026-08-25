@@ -25,7 +25,7 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
         </form>
       </div>
       <div className="section-title">
-        <h2>{results.length} matching services</h2>
+        <h2>{results.length ? `${results.length} matching services` : "Browse all services"}</h2>
         <Link href="/services/a-z">A-Z index</Link>
       </div>
       <div className="section-panel">
@@ -33,6 +33,7 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
           const row = getCapability(service.id, selectedState);
           return row ? <ServiceRow key={service.id} service={service} row={row} state={selectedState} /> : null;
         })}
+        {!results.length ? <p className="empty-search">We could not match that wording yet. Browse the directory or the A–Z index; this page never ends at zero results.</p> : null}
       </div>
     </>
   );

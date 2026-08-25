@@ -2,7 +2,7 @@ import Link from "next/link";
 import { cookies } from "next/headers";
 import { ArrowRight, Gauge, MapPinned, ScanLine, ShieldCheck } from "lucide-react";
 import { getCapability, isStateCode, services, states, type StateCode } from "@/lib/capability";
-import { ServiceRow, SummaryPill } from "@/components/ui";
+import { ServiceRow } from "@/components/ui";
 
 const lifeEvents = [
   "I got a fine",
@@ -26,29 +26,24 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ s
     <>
       <section className="hero home-hero">
         <div className="hero-copy">
-          <p className="eyebrow">Capability Matrix · Ledger · Pre-flight · Verifiable Notice</p>
-          <h1>Tell me the truth before I pay.</h1>
+          <p className="eyebrow">Answers for {states[selectedState]} · Nothing to pay to find out.</p>
+          <h1>What do you need to do?</h1>
           <p className="lead">
-            Raah is a browser prototype for road-transport services. It starts with the answer people need first:
-            whether a task can be completed online, what it costs, how long it takes, and what documents are required.
+            Describe it in your own words, or choose a life event below. Typing is never the only way in.
           </p>
-          <div className="summary-row">
-            <SummaryPill>AI_ENABLED=false ready</SummaryPill>
-            <SummaryPill>JS-friendly forms</SummaryPill>
-            <SummaryPill>Synthetic rule corpus</SummaryPill>
-          </div>
         </div>
         <div className="command-card">
           <div className="command-card-header">
-            <span>Answer console</span>
+            <span>Keyword search · no AI required</span>
             <strong>{states[selectedState]}</strong>
           </div>
           <form action="/search" className="command-search">
             <ScanLine size={18} aria-hidden="true" />
             <label className="sr-only" htmlFor="q">What do you need to do?</label>
-            <input id="q" name="q" placeholder="Form 35, challan, address change" />
+            <input id="q" name="q" placeholder="Describe what you need — in any language" />
             <button type="submit">Search</button>
           </form>
+          <p className="search-help">Works with no JavaScript. Search is never the only way in.</p>
           <div className="signal-grid" aria-label="Prototype guarantees">
             <span><Gauge size={16} /> Fee last</span>
             <span><MapPinned size={16} /> State-aware</span>
